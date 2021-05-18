@@ -9,6 +9,9 @@
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/cm3/nvic.h>
 
+#pragma GCC push_options
+#pragma GCC optimize("-Os")
+
 extern void vPortSVCHandler( void ) __attribute__ (( naked ));
 extern void xPortPendSVHandler( void ) __attribute__ (( naked ));
 extern void xPortSysTickHandler( void );
@@ -24,5 +27,5 @@ void pend_sv_handler(void) {
 void sys_tick_handler(void) {
 	xPortSysTickHandler();
 } 
-
+#pragma GCC pop_options
 /* end opncm3.c */
